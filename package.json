@@ -1,0 +1,8 @@
+{
+  "name": "espace-classe",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "one-gulp": "https://github.com/Alex-D/one-gulp/tarball/master"
+  }
+}

@@ -1,0 +1,14 @@
+.container {
+    position: relative;
+    padding: 0 50px;
+}
+
+// Breakpoints mediaqueries
+$small-screen: 768px !default;
+$medium-screen: 1280px !default;
+$large-screen: 1440px !default;
+$xlarge-screen: 1600px !default;
+
+$small-only: "screen and (max-width: " + $small-screen + ")";
+$medium-only: "screen and (min-width: " + ($small-screen + 1) + ") and (max-width: " + $medium-screen + ")";
+$large-only: "screen and (min-width: " + ($medium-screen + 1) + ") and (max-width: " + $xlarge-screen + ")";

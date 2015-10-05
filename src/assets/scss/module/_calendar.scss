@@ -1,0 +1,90 @@
+.fc-toolbar {
+    .fc-button {
+        background: transparent;
+        border: 1px solid $primary-color;
+        color: $primary-color;
+        box-shadow: none;
+        height: 29px;
+        line-height: 27px;
+        font-weight: 400;
+        font-size: 15px;
+        border-radius: $global-radius;
+        margin-left: 0;
+        outline: none;
+        transition: all $transition-duration;
+
+        &.fc-state-active {
+            color: $secondary-color;
+            background: $primary-color;
+        }
+        &.fc-state-disabled {
+            color: $grey;
+            border-color: $grey;
+        }
+    }
+
+    .fc-button-group {
+        .fc-button {
+            &:not(:last-child) {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            &:not(:first-child) {
+                border-left: 0;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+    }
+
+    .fc-center {
+        h2 {
+            font-size: 26px;
+            font-weight: $font-weight-thin;
+        }
+    }
+}
+.fc-widget-header {
+    .fc-day-header {
+        font-weight: $font-weight-thin;
+        font-size: 14px;
+        padding: 5px 0;
+    }
+}
+.fc-widget-content {
+    .fc-bg {
+        .fc-today {
+            position: relative;
+            background: none;
+
+            &::after {
+                content: "";
+                display: block;
+                height: 26px;
+                width: 100%;
+                background: $primary-color;
+            }
+        }
+    }
+    .fc-content-skeleton {
+        .fc-day-number {
+            height: 20px;
+            width: 20px;
+            padding: 3px 4px 0 0;
+        }
+        .fc-today {
+            color: $secondary-color;
+        }
+    }
+    .fc-event-container {
+        padding-top: 7px;
+
+        .fc-event {
+            margin-left: 5px;
+            padding: 2px 5px;
+            color: $primary-color;
+            border-color: $primary-color;
+            background: none;
+        }
+    }
+}
