@@ -1,0 +1,160 @@
+.m-classroom {
+    ul {
+        @include no-bullet();
+    }
+
+    button {
+        &:focus {
+            outline: none;
+        }
+    }
+
+    ul.m-classroom--student-list {
+        display: flex;
+        margin-bottom: 30px;
+    }
+    &--student {
+        display: flex;
+        flex: 1;
+    }
+
+    &--student-card {
+        position: relative;
+        padding: 5px 7px 0;
+        height: 143px;
+        text-align: center;
+        background: #eee;
+        border: none;
+        border-right: 1px solid #ddd;
+        border-bottom: 3px solid #ddd;
+
+        &-has-note {
+            position: absolute;
+            top: 68px;
+            right: 3px;
+            height: 25px;
+            width: 25px;
+            padding: 4px;
+            background: $secondary-color;
+            border: 2px solid $primary-color;
+            border-radius: 100%;
+
+            span {
+                display: block;
+                height: 100%;
+                width: 100%;
+                background: url(../images/edit-primary.png) center center;
+                background-size: 100%;
+            }
+        }
+        &-face {
+            width: 84px;
+            height: 84px;
+            border-radius: 100%;
+            margin-bottom: 6px;
+            border: 2px solid $secondary-color;
+        }
+        &-participations {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            padding: 3px;
+            min-width: 30px;
+            line-height: 20px;
+            font-size: 12px;
+            text-align: center;
+            color: $secondary-color;
+            background: $primary-color;
+            border-radius: 100%;
+            border: 2px solid $secondary-color;
+        }
+        .warning-round {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        &-name {
+            display: block;
+            height: 36px;
+        }
+    }
+
+    &--student-focused {
+        position: relative;
+        display: flex;
+        background: rgba(0, 0, 0, 0.8);
+
+        &,
+        &-close {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        &-inner {
+            position: relative;
+            margin: auto;
+            height: 75vh;
+            width: 75vh;
+            border: 2px solid $primary-color;
+            background: $secondary-color;
+            z-index: 1;
+        }
+        &-name {
+            position: absolute;
+            top: 12vh;
+            width: 100%;
+            text-align: center;
+            font-size: 26px;
+        }
+        &-participations {
+            display: block;
+            position: absolute;
+            top: 25vh;
+            left: 55%;
+            color: $secondary-color;
+            background: $primary-color;
+            padding: 5px 10px;
+            border-radius: 20px;
+            border: 2px solid $secondary-color;
+        }
+        &-face {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            height: 25vh;
+            width: 25vh;
+            border-radius: 100%;
+            border: 2px solid $primary-color;
+        }
+    }
+}
+
+.warning-round {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    border: 2px solid $secondary-color;
+    border-radius: 100%;
+}
+.warning {
+    &-green {
+        background: #27ae60;
+    }
+    &-yellow {
+        background: #f1c40f;
+    }
+    &-orange {
+        background: #e67e22;
+    }
+    &-red {
+        background: #c0392b;
+    }
+    &-dark {
+        background: #2c3e50;
+    }
+}

@@ -1,0 +1,69 @@
+.m-popin {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    &--overlay {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    &--inner {
+        position: relative;
+        margin: auto;
+        background: $grey-lighter;
+        min-width: 400px;
+        max-width: 80%;
+        min-height: 200px;
+        max-height: 80%;
+        overflow: hidden;
+    }
+
+    &--header {
+        position: relative;
+        background: $secondary-color;
+        border-bottom: 1px solid $grey-light;
+        text-align: center;
+
+        &-button {
+            position: absolute;
+            top: 0;
+            color: $primary-color;
+            font-size: 15px;
+            padding: 13px 15px;
+            border: none;
+            background: none;
+
+            &:focus {
+                outline: none;
+            }
+
+            &:first-child {
+                left: 0;
+            }
+            &:last-child {
+                right: 0;
+            }
+        }
+        &-title {
+            margin: 0;
+            padding: 12px 0;
+            font-size: 17px;
+            font-weight: $font-weight-normal;
+            letter-spacing: 1px;
+        }
+    }
+    &--content {
+        padding: 15px;
+
+        p {
+            margin: 0;
+        }
+    }
+}

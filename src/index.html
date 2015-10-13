@@ -14,14 +14,48 @@
     <!-- inject:css -->
     <!-- endinject -->
 </head>
-<body ng-app="espaceClasse">
-    <header class="m-header">
-        <h1 class="m-header--pagename">Espace Classe</h1>
-    </header>
+<body ng-app="espaceClasse" ng-controller="MainController">
+    <div class="m-body" ng-class="{'in-background': popins.length > 0}">
+        <aside class="m-menu" ng-class="{'m-menu__visible': isMenuVisible}">
+            <div class="m-menu--header">
+                Menu
+                <button type="button" class="m-menu--header-icon" ng-click="hideMenu()"></button>
+            </div>
+            <ul class="no-bullet">
+                <li class="m-menu--item">
+                    <a href="#TODO" class="m-menu--item-link">
+                        <span class="m-menu--item-link-icon icon-calendar"></span>
+                        Calendar
+                    </a>
+                </li>
+                <li class="m-menu--item">
+                    <a href="#TODO" class="m-menu--item-link">
+                        <span class="m-menu--item-link-icon icon-classes"></span>
+                        Classes
+                    </a>
+                </li>
+                <li class="m-menu--item">
+                    <a href="/#/classroom" class="m-menu--item-link">
+                        <span class="m-menu--item-link-icon icon-classrooms"></span>
+                        Classrooms
+                    </a>
+                </li>
+            </ul>
+        </aside>
 
-    <main class="m-main">
-        <div ng-view></div>
-    </main>
+        <div class="m-menu--page-content">
+            <header class="m-header">
+                <h1 class="m-header--pagename">{{pageTitle}}</h1>
+                <button type="button" class="m-header--menu-button" ng-click="showMenu()">Menu</button>
+            </header>
+
+            <main class="m-main">
+                <div ng-view></div>
+            </main>
+        </div>
+
+        <div class="m-menu--page-content-overlay" ng-click="hideMenu()"></div>
+    </div>
 
     <!-- inject:js -->
     <!-- endinject -->

@@ -1,7 +1,9 @@
 .m-header {
     height: 44px;
     line-height: 44px;
-    background: $grey-light;
+    color: $secondary-color;
+    background: $primary-color;
+    background: linear-gradient(to right, $primary-color, #8824a5);
     border-bottom: 1px solid $grey;
 
     &--pagename {
@@ -11,5 +13,22 @@
         width: 100%;
         font-size: 17px;
         font-weight: $font-weight-normal;
+        letter-spacing: 1px;
+    }
+
+    &--menu-button {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        height: 42px;
+        width: 45px;
+        border: none;
+        background: url('/assets/images/menu.png') center center no-repeat;
+        background-size: 50% 50%;
+        text-indent: -9999px;
+
+        &:focus {
+            outline: none;
+        }
     }
 }

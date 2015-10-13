@@ -2,7 +2,9 @@
 
 angular.module('espaceClasse.calendar')
 
-    .controller('CalendarController', function ($scope) {
+    .controller('CalendarController', function ($scope, $rootScope) {
+        $rootScope.pageTitle = 'Calendar';
+
         $scope.dayClickHandler = function (date, event, view) {
             console.log('DAY', date, event, view);
         };
@@ -25,6 +27,6 @@ angular.module('espaceClasse.calendar')
             }
         };
         $scope.events = [[
-            {title: 'All Day Event', start: new Date()}
+            {title: 'Mon super cours', start: new Date()}
         ]];
     });

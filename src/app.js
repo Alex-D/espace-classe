@@ -5,6 +5,8 @@ angular.module('espaceClasse', [
 
     'ui.calendar',
 
+    'espaceClasse.common',
+    'espaceClasse.main',
     'espaceClasse.classroom',
     'espaceClasse.calendar'
 ])

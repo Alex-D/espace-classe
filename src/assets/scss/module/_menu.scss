@@ -1,0 +1,102 @@
+$menu-width: 300px;
+
+.m-menu--page-content {
+    min-height: 100vh;
+    background: $secondary-color;
+    opacity: 1;
+    transition: opacity $transition-duration;
+
+    &-overlay {
+        display: none;
+        position: fixed;
+        top: -20px;
+        right: -20px;
+        bottom: -20px;
+        left: -20px;
+        z-index: 99;
+    }
+}
+
+.m-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    height: 100vh;
+    width: $menu-width;
+    background: $grey-lighter;
+    transform: translateX($menu-width);
+    transition: transform $transition-duration;
+
+    &__visible {
+        transform: translateX(0);
+
+        & ~ .m-menu--page-content {
+            opacity: 0.6;
+        }
+        & ~ .m-menu--page-content-overlay {
+            display: block;
+        }
+    }
+
+    &--header {
+        height: 44px;
+        line-height: 44px;
+        padding: 0 0 0 15px;
+        color: $primary-color;
+        border-bottom: 1px solid $grey-light;
+        letter-spacing: 1px;
+
+        &-icon {
+            display: block;
+            height: 44px;
+            width: 45px;
+            position: fixed;
+            top: 0;
+            right: 5px;
+            background: url('/assets/images/menu-primary.png') center center no-repeat;
+            background-size: 50% 50%;
+            border: none;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    &--item {
+        &-link {
+            display: block;
+            position: relative;
+            padding: 25px 0 25px 65px;
+            border-bottom: 1px solid $grey-ultralight;
+            font-size: 14px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: $grey;
+            letter-spacing: 2px;
+
+            &-icon {
+                display: block;
+                height: 45px;
+                width: 45px;
+                position: absolute;
+                top: 10px;
+                left: 9px;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: 70% 70%;
+
+                &.icon-calendar {
+                    background-image: url('/assets/images/calendar-primary.png');
+                }
+                &.icon-classes {
+                    background-image: url('/assets/images/users-primary.png');
+                }
+                &.icon-classrooms {
+                    background-image: url('/assets/images/briefcase-primary.png');
+                }
+            }
+        }
+    }
+}
