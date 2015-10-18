@@ -5,20 +5,40 @@
             <ul class="m-classroom--student-list">
                 <li ng-repeat="student in row track by $index" class="m-classroom--student">
                     <div class="m-classroom--student-card" ng-if="student.firstname">
-                        <button type="button" class="m-classroom--student-card-participations" ng-if="student.participations !== 0">
-                            {{student.participations}}
-                        </button>
-                        <button type="button" class="m-classroom--student-card-has-note" ng-if="student.note != null" ng-click="showNote(student)">
+                        <div class="m-classroom--student-card-participations"
+                             ng-class="{'zero-participation': student.participations === 0, 'participations-edit': student.participationEditIsVisible}">
+                            <button type="button" class="m-classroom--student-card-participations-button"
+                                    ng-click="toggleEditParticipations(student)">
+                                {{student.participations}}
+                            </button>
+                            <div class="m-classroom--student-card-participations-edit"
+                            ng-if="student.participationEditIsVisible">
+                                <button type="button" ng-click="editParticipations(student, -1)" ng-disabled="student.participations === 0">-</button>
+                                <button type="button" ng-click="editParticipations(student, +1)">+</button>
+                            </div>
+                        </div>
+                        <button type="button" ng-click="toggleEditParticipations(student)" class="close-participation">&times;</button>
+                        <button type="button" class="m-classroom--student-card-has-note"
+                                ng-class="{'empty-note': student.note == null || student.note.length === 0}"
+                                ng-click="showNote(student)">
                             <span></span>
                         </button>
                         <img ng-src="{{student.photo}}" alt="" class="m-classroom--student-card-face">
-                        <button type="button" class="warning-round" ng-class="{
+                        <button type="button" class="warning-round" ng-click="toggleEditWarning(student)" ng-class="{
                                 'warning-green': student.warning === 1,
                                 'warning-yellow': student.warning === 2,
                                 'warning-orange': student.warning === 3,
                                 'warning-red': student.warning === 4,
                                 'warning-dark': student.warning === 5
-                            }" ng-if="student.warning > 0"></button>
+                            }"></button>
+                        <div class="warning-edit" ng-if="student.warningEditIsVisible">
+                            <button type="button" ng-click="setWarning(student, 0)" class="warning-round"></button>
+                            <button type="button" ng-click="setWarning(student, 1)" class="warning-round warning-green"></button>
+                            <button type="button" ng-click="setWarning(student, 2)" class="warning-round warning-yellow"></button>
+                            <button type="button" ng-click="setWarning(student, 3)" class="warning-round warning-orange"></button>
+                            <button type="button" ng-click="setWarning(student, 4)" class="warning-round warning-red"></button>
+                            <button type="button" ng-click="setWarning(student, 5)" class="warning-round warning-dark"></button>
+                        </div>
                         <span class="m-classroom--student-card-name">{{student.firstname}} {{student.lastname}}</span>
                     </div>
                 </li>
@@ -28,13 +48,10 @@
 
     <div popin
          popin-is-open="studentNotePopin"
-         popin-title="studentNotePopin.firstname + ' ' + studentNotePopin.lastname"
+         popin-title="'Note about ' + studentNotePopin.firstname + ' ' + studentNotePopin.lastname"
          popin-close="hideNote"
          popin-cancel-label=""
          popin-submit-label="'OK'">
-        <p>
-            Note : <br>
-            {{studentNotePopin.note}}
-        </p>
+        <textarea ng-model="studentNotePopin.note" class="in-place-edit" placeholder="Your note here..."></textarea>
     </div>
 </div>

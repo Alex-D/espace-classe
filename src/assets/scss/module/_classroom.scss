@@ -30,21 +30,30 @@
 
         &-has-note {
             position: absolute;
-            top: 68px;
+            top: 64px;
             right: 3px;
-            height: 25px;
-            width: 25px;
+            height: 30px;
+            width: 30px;
             padding: 4px;
-            background: $secondary-color;
-            border: 2px solid $primary-color;
+            background: $primary-color;
+            border: 2px solid $secondary-color;
             border-radius: 100%;
 
             span {
                 display: block;
                 height: 100%;
                 width: 100%;
-                background: url(../images/edit-primary.png) center center;
+                background: url(../images/note.png) center center;
                 background-size: 100%;
+            }
+
+            &.empty-note {
+                background: $secondary-color;
+                border-color: $secondary-color;
+
+                span {
+                    background-image: url(../images/note-primary.png);
+                }
             }
         }
         &-face {
@@ -59,7 +68,8 @@
             top: 3px;
             right: 3px;
             padding: 3px;
-            min-width: 30px;
+            height: 30px;
+            width: 30px;
             line-height: 20px;
             font-size: 12px;
             text-align: center;
@@ -67,6 +77,74 @@
             background: $primary-color;
             border-radius: 100%;
             border: 2px solid $secondary-color;
+            transition: all $transition-duration;
+
+            &.zero-participation {
+                color: $primary-color;
+                background: $secondary-color;
+            }
+            &.participations-edit {
+                overflow: hidden;
+                width: 88px;
+                height: 88px;
+                z-index: 1;
+                box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+
+                .m-classroom--student-card-participations-button {
+                    height: 50%;
+                    font-size: 16px;
+                }
+
+                & + .close-participation {
+                    display: block;
+                    z-index: 2;
+                    position: absolute;
+                    top: 2px;
+                    right: 2px;
+                    height: 30px;
+                    width: 30px;
+                    background: $secondary-color;
+                    border: none;
+                    border-radius: 100%;
+                }
+            }
+
+            &-button {
+                border: none;
+                background: none;
+                padding: 0;
+                height: 100%;
+                width: 100%;
+                transition: all $transition-duration;
+            }
+
+            &-edit {
+                width: 100%;
+                min-width: 70px;
+                margin-top: -4px;
+
+                button {
+                    display: inline-block;
+                    height: 30px;
+                    width: 30px;
+                    color: $primary-color;
+                    background: $secondary-color;
+                    font-size: 20px;
+                    border: none;
+                    border-radius: 100%;
+
+                    &[disabled] {
+                        opacity: 0.2;
+                    }
+
+                    & + button {
+                        margin-left: 3px;
+                    }
+                }
+            }
+        }
+        .close-participation {
+            display: none;
         }
         .warning-round {
             position: absolute;
@@ -74,62 +152,26 @@
             left: 50%;
             transform: translateX(-50%);
         }
+        .warning-edit {
+            position: absolute;
+            bottom: 30px;
+            background: $secondary-color;
+            border-radius: $global-radius;
+            height: 47px;
+            width: 87px;
+            box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+            animation: showWarningEdit $transition-duration;
+
+            .warning-round {
+                position: relative;
+                top: 3px;
+                left: 7px;
+                margin-bottom: 2px;
+            }
+        }
         &-name {
             display: block;
             height: 36px;
-        }
-    }
-
-    &--student-focused {
-        position: relative;
-        display: flex;
-        background: rgba(0, 0, 0, 0.8);
-
-        &,
-        &-close {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-        }
-
-        &-inner {
-            position: relative;
-            margin: auto;
-            height: 75vh;
-            width: 75vh;
-            border: 2px solid $primary-color;
-            background: $secondary-color;
-            z-index: 1;
-        }
-        &-name {
-            position: absolute;
-            top: 12vh;
-            width: 100%;
-            text-align: center;
-            font-size: 26px;
-        }
-        &-participations {
-            display: block;
-            position: absolute;
-            top: 25vh;
-            left: 55%;
-            color: $secondary-color;
-            background: $primary-color;
-            padding: 5px 10px;
-            border-radius: 20px;
-            border: 2px solid $secondary-color;
-        }
-        &-face {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            height: 25vh;
-            width: 25vh;
-            border-radius: 100%;
-            border: 2px solid $primary-color;
         }
     }
 }
@@ -141,7 +183,10 @@
     border: 2px solid $secondary-color;
     border-radius: 100%;
 }
+
 .warning {
+    background: $grey;
+
     &-green {
         background: #27ae60;
     }
@@ -156,5 +201,16 @@
     }
     &-dark {
         background: #2c3e50;
+    }
+}
+
+@keyframes showWarningEdit {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

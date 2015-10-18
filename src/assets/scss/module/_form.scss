@@ -1,0 +1,19 @@
+.in-place-edit {
+    &:not(:focus) {
+        border-color: transparent !important;
+        background: none !important;
+    }
+    &:focus {
+        outline: none;
+    }
+}
+textarea.in-place-edit {
+    width: 100%;
+    resize: none;
+    background: none;
+    border: none;
+}
+.m-popin textarea.in-place-edit {
+    min-width: 400px;
+    min-height: 200px;
+}
