@@ -12,4 +12,8 @@ angular.module('espaceClasse.main', [])
         };
 
         $rootScope.pageTitle = 'Espace Classe';
+
+        $rootScope.$on('$routeChangeSuccess', function () {
+            $scope.hideMenu();
+        });
     });

@@ -32,12 +32,12 @@
                                 'warning-dark': student.warning === 5
                             }"></button>
                         <div class="warning-edit" ng-if="student.warningEditIsVisible">
-                            <button type="button" ng-click="setWarning(student, 0)" class="warning-round"></button>
-                            <button type="button" ng-click="setWarning(student, 1)" class="warning-round warning-green"></button>
-                            <button type="button" ng-click="setWarning(student, 2)" class="warning-round warning-yellow"></button>
-                            <button type="button" ng-click="setWarning(student, 3)" class="warning-round warning-orange"></button>
-                            <button type="button" ng-click="setWarning(student, 4)" class="warning-round warning-red"></button>
-                            <button type="button" ng-click="setWarning(student, 5)" class="warning-round warning-dark"></button>
+                            <button type="button" ng-click="setWarning(student, 0)" class="warning-round" ng-class="{'warning-current': student.warning === 0}"></button>
+                            <button type="button" ng-click="setWarning(student, 1)" class="warning-round warning-green" ng-class="{'warning-current': student.warning === 1}"></button>
+                            <button type="button" ng-click="setWarning(student, 2)" class="warning-round warning-yellow" ng-class="{'warning-current': student.warning === 2}"></button>
+                            <button type="button" ng-click="setWarning(student, 3)" class="warning-round warning-orange" ng-class="{'warning-current': student.warning === 3}"></button>
+                            <button type="button" ng-click="setWarning(student, 4)" class="warning-round warning-red" ng-class="{'warning-current': student.warning === 4}"></button>
+                            <button type="button" ng-click="setWarning(student, 5)" class="warning-round warning-dark" ng-class="{'warning-current': student.warning === 5}"></button>
                         </div>
                         <span class="m-classroom--student-card-name">{{student.firstname}} {{student.lastname}}</span>
                     </div>
