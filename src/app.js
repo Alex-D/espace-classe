@@ -7,7 +7,7 @@ angular.module('espaceClasse', [
 
     'espaceClasse.common',
     'espaceClasse.main',
-    'espaceClasse.classroom',
+    'espaceClasse.course',
     'espaceClasse.calendar'
 ])
 

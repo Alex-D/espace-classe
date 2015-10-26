@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('espaceClasse.classroom')
+angular.module('espaceClasse.course')
 
-    .controller('ClassroomController', function ($scope, $rootScope) {
+    .controller('CourseController', function ($scope, $rootScope) {
         $rootScope.pageTitle = 'Classroom';
 
         // Classroom student/place list
