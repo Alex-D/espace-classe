@@ -8,7 +8,8 @@ angular.module('espaceClasse', [
     'espaceClasse.common',
     'espaceClasse.main',
     'espaceClasse.course',
-    'espaceClasse.calendar'
+    'espaceClasse.calendar',
+    'espaceClasse.classes'
 ])
 
     .config(function ($routeProvider) {

@@ -1,0 +1,110 @@
+.m-classes {
+    display: flex;
+
+    &--sidebar {
+        flex: 1;
+        height: calc(100vh - 44px);
+        overflow: auto;
+        background: $grey-lighter;
+
+        &-classname {
+            display: block;
+            width: 100%;
+            height: 50px;
+            text-align: left;
+            border: none;
+            background: none;
+            padding: 15px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid $grey-ultralight;
+            border-left: 0 solid transparent;
+            transition: color $transition-duration, border $transition-duration;
+
+            &:focus {
+                outline: none;
+            }
+
+            &.add {
+                background: $grey-light;
+                font-size: 24px;
+                text-align: center;
+                padding: 8px 15px 12px;
+            }
+
+            &.active {
+                border-left: 4px solid $primary-color;
+                color: $primary-color;
+            }
+        }
+    }
+
+    &--content {
+        position: relative;
+        flex: 3;
+
+        .m-classes--delete {
+            display: block;
+            position: absolute;
+            top: 10px;
+            right: 7px;
+            height: 40px;
+            width: 40px;
+            background: url('../images/delete-primary.png') no-repeat center center;
+            background-size: 25px;
+            border: none;
+            text-indent: -9999px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .student-list-scroll {
+            height: calc(100vh - 140px);
+            margin: 30px 0 0;
+            overflow: auto;
+        }
+        .student-list {
+            position: relative;
+            margin: 0 0 15px;
+            padding: 0 15px;
+
+            li {
+                position: relative;
+                border-bottom: 1px solid $grey-lighter;
+
+                input {
+                    padding: 10px 7px;
+
+                    &:focus {
+                        border-color: transparent;
+                        border-bottom-color: $primary-color;
+                    }
+                }
+
+                .m-classes--delete {
+                    top: 0;
+                    right: 0;
+                    background-size: 20px;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+                .add {
+                    border: none;
+                    background: $grey-lighter;
+                    width: 100%;
+                    text-align: center;
+                    font-size: 22px;
+                    padding: 5px 0 10px;
+                    margin-top: 15px;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+    }
+}

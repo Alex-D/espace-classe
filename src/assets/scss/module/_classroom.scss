@@ -1,4 +1,6 @@
 .m-classroom {
+    margin: 15px;
+
     ul {
         @include no-bullet();
     }

@@ -49,7 +49,7 @@
     <div popin
          popin-is-open="studentNotePopin"
          popin-title="'Note about ' + studentNotePopin.firstname + ' ' + studentNotePopin.lastname"
-         popin-close="hideNote"
+         popin-submit="hideNote"
          popin-cancel-label=""
          popin-submit-label="'OK'">
         <textarea ng-model="studentNotePopin.note" class="in-place-edit" placeholder="Your note here..."></textarea>

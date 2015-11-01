@@ -8,7 +8,8 @@ angular.module('espaceClasse.common')
                 popin: '=',
                 popinIsOpen: '=',
                 popinTitle: '=',
-                popinClose: '=',
+                popinSubmit: '=',
+                popinCancel: '=',
                 popinSubmitLabel: '=',
                 popinCancelLabel: '='
             },

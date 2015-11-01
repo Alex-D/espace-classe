@@ -9,5 +9,5 @@ angular.module('espaceClasse.calendar', [
             .when('/', {
                 templateUrl: 'calendar/view/index.html',
                 controller: 'CalendarController'
-            })
+            });
     });

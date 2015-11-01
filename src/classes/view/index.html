@@ -1,0 +1,70 @@
+<div class="m-classes">
+    <div class="m-classes--sidebar">
+        <ul class="no-bullet">
+            <li ng-repeat="class in classes">
+                <button class="m-classes--sidebar-classname"
+                        ng-class="{'active': class === currentClass}"
+                        ng-click="selectClass($index)">
+                    {{ class.name }}
+                </button>
+            </li>
+            <li>
+                <button class="m-classes--sidebar-classname add" ng-click="addClass()">
+                    +
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="m-classes--content">
+        <div ng-hide="currentClass" class="empty-placeholder">
+            Pick a class
+        </div>
+
+        <div ng-show="currentClass">
+            <input class="heading in-place-edit" ng-model="currentClass.name"/>
+
+            <button ng-click="openDeleteCurrentClassModal()" class="m-classes--delete">
+                Remove
+            </button>
+
+            <div class="student-list-scroll">
+                <ul class="no-bullet student-list">
+                    <li ng-repeat="student in currentClass.students">
+                        <input class="in-place-edit" ng-model="student.firstname" placeholder="Firstname">
+                        <input class="in-place-edit" ng-model="student.lastname" placeholder="Lastname">
+                        <button ng-click="openDeleteStudentModal(student)" class="m-classes--delete">
+                            Remove
+                        </button>
+                    </li>
+                    <li>
+                        <button class="add" ng-click="addStudent()">+</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div popin
+         popin-is-open="currentClassDelete"
+         popin-title="'Confirm delete'"
+         popin-submit="deleteCurrentClass"
+         popin-cancel="cancelDeleteCurrentClass"
+         popin-cancel-label="'Cancel'"
+         popin-submit-label="'Yes'">
+        <p>
+            Are you sure to delete {{ currentClassDelete.name }}?
+        </p>
+    </div>
+
+    <div popin
+         popin-is-open="currentStudentDelete"
+         popin-title="'Confirm delete'"
+         popin-submit="deleteStudent"
+         popin-cancel="cancelDeleteStudent"
+         popin-cancel-label="'Cancel'"
+         popin-submit-label="'Yes'">
+        <p>
+            Are you sure to delete {{ currentStudentDelete.firstname + currentStudentDelete.lastname }}?
+        </p>
+    </div>
+</div>

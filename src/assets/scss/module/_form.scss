@@ -1,9 +1,10 @@
 .in-place-edit {
-    &:not(:focus) {
-        border-color: transparent !important;
-        background: none !important;
-    }
+    border: 1px solid transparent;
+    background: none !important;
+    transition: border 150ms;
+
     &:focus {
+        border-color: $grey-light;
         outline: none;
     }
 }

@@ -1,10 +1,10 @@
 <div class="m-popin" ng-if="popinIsOpen">
-    <div class="m-popin--overlay" ng-click="popinClose()"></div>
+    <div class="m-popin--overlay" ng-click="popinCancel()"></div>
     <div class="m-popin--inner">
         <div class="m-popin--header">
-            <button type="button" class="m-popin--header-button" ng-click="popinClose()" ng-if="popinCancelLabel">{{popinCancelLabel}}</button>
+            <button type="button" class="m-popin--header-button" ng-click="popinCancel()" ng-if="popinCancelLabel">{{popinCancelLabel}}</button>
             <h2 class="m-popin--header-title">{{popinTitle}}</h2>
-            <button type="button" class="m-popin--header-button" ng-click="popinClose()">{{popinSubmitLabel}}</button>
+            <button type="button" class="m-popin--header-button" ng-click="popinSubmit()">{{popinSubmitLabel}}</button>
         </div>
 
         <div class="m-popin--content" ng-transclude></div>
