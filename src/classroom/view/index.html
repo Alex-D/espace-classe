@@ -32,7 +32,11 @@
                 <option ng-repeat="class in classes track by $index" value="{{ class.id }}">{{ class.name }}</option>
             </select>
 
-            <div class="m-classroom">
+            <div ng-hide="currentClassroom.classeId" class="empty-placeholder">
+                Pick a class
+            </div>
+
+            <div class="m-classroom" ng-show="currentClassroom.classeId">
                 <ul>
                     <li ng-repeat="row in currentClassroom.seats track by $index">
                         <ul class="m-classroom--student-list">

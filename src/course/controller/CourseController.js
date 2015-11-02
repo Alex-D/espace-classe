@@ -24,7 +24,7 @@ angular.module('espaceClasse.course')
             newStudent.warning = Math.round(i / 2);
             seats.push(i !== 1 && i !== 4 && i !== 7 ? newStudent : {});
         }
-        for (let i = 0; i < 4; i += 1) {
+        for (let i = 0; i < 5; i += 1) {
             $scope.classroom.push(seats);
         }
 
