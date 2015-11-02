@@ -83,8 +83,7 @@ $menu-width: 300px;
                 position: absolute;
                 top: 10px;
                 left: 9px;
-                background-position: center center;
-                background-repeat: no-repeat;
+                background: center center no-repeat;
                 background-size: 70% 70%;
 
                 &.icon-calendar {
@@ -93,8 +92,11 @@ $menu-width: 300px;
                 &.icon-classes {
                     background-image: url('/assets/images/users-primary.png');
                 }
-                &.icon-classrooms {
+                &.icon-course {
                     background-image: url('/assets/images/briefcase-primary.png');
+                }
+                &.icon-classrooms {
+                    background-image: url('/assets/images/settings-primary.png');
                 }
             }
         }

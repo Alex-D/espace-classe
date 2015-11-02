@@ -7,7 +7,7 @@ angular.module('espaceClasse.course', [
     .config(function ($routeProvider) {
         $routeProvider
             .when('/course', {
-                templateUrl: 'course/view/course-classroom.html',
+                templateUrl: 'course/view/index.html',
                 controller: 'CourseController'
             });
     });

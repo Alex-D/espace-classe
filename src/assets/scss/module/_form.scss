@@ -18,3 +18,15 @@ textarea.in-place-edit {
     min-width: 400px;
     min-height: 200px;
 }
+
+select.centred {
+    display: block;
+    margin: 0 auto 15px;
+    padding: 10px;
+    border: 1px solid $grey-lighter;
+    
+    &:focus {
+        outline: none;
+        border-color: $primary-color;
+    }
+}

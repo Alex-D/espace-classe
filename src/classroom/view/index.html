@@ -1,0 +1,72 @@
+<div class="m-classes">
+    <div class="m-classes--sidebar">
+        <ul class="no-bullet">
+            <li ng-repeat="classroom in classrooms track by $index">
+                <button class="m-classes--sidebar-classname"
+                        ng-class="{'active': classroom === currentClassroom}"
+                        ng-click="selectClassroom($index)">
+                    {{ classroom.name }}
+                </button>
+            </li>
+            <li>
+                <button class="m-classes--sidebar-classname add" ng-click="addClassroom()">
+                    +
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="m-classes--content">
+        <div ng-hide="currentClassroom" class="empty-placeholder">
+            Pick a classroom
+        </div>
+
+        <div ng-show="currentClassroom">
+            <input class="heading in-place-edit" ng-model="currentClassroom.name"/>
+
+            <button ng-click="openDeleteCurrentClassroomModal()" class="m-classes--delete">
+                Remove
+            </button>
+
+            <select ng-model="currentClassroom.classeId" class="centred">
+                <option value="">--- Select a class ---</option>
+                <option ng-repeat="class in classes track by $index" value="{{ class.id }}">{{ class.name }}</option>
+            </select>
+
+            <div class="m-classroom">
+                <ul>
+                    <li ng-repeat="row in currentClassroom.seats track by $index">
+                        <ul class="m-classroom--student-list">
+                            <li ng-repeat="seat in row track by $index" class="m-classroom--student">
+                                <span class="seat-firstname">
+                                    {{ indexedStudents[seat.studentId].firstname }}
+                                </span>
+                                <span class="seat-lastname">
+                                    {{ indexedStudents[seat.studentId].lastname }}
+                                </span>
+                                <select class="pick-student" ng-model="seat.studentId">
+                                    <option value="">--- Select a class ---</option>
+                                    <option ng-repeat="student in indexedClasses[currentClassroom.classeId].students track by $index"
+                                            value="{{ student.id }}">
+                                        {{ student.firstname + ' ' + student.lastname }}
+                                    </option>
+                                </select>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div popin
+         popin-is-open="currentClassroomDelete"
+         popin-title="'Confirm delete'"
+         popin-submit="deleteCurrentClassroom"
+         popin-cancel="cancelDeleteCurrentClassroom"
+         popin-cancel-label="'Cancel'"
+         popin-submit-label="'Yes'">
+        <p>
+            Are you sure to delete {{ currentClassroomDelete.name }}?
+        </p>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 <div class="m-classes">
     <div class="m-classes--sidebar">
         <ul class="no-bullet">
-            <li ng-repeat="class in classes">
+            <li ng-repeat="class in classes track by $index">
                 <button class="m-classes--sidebar-classname"
                         ng-class="{'active': class === currentClass}"
                         ng-click="selectClass($index)">
@@ -29,7 +29,7 @@
 
             <div class="student-list-scroll">
                 <ul class="no-bullet student-list">
-                    <li ng-repeat="student in currentClass.students">
+                    <li ng-repeat="student in currentClass.students track by $index">
                         <input class="in-place-edit" ng-model="student.firstname" placeholder="Firstname">
                         <input class="in-place-edit" ng-model="student.lastname" placeholder="Lastname">
                         <button ng-click="openDeleteStudentModal(student)" class="m-classes--delete">

@@ -2,15 +2,13 @@
 
 angular.module('espaceClasse.classes')
 
-    .controller('ClassesController', function ($scope, $rootScope) {
+    .controller('ClassesController', function ($scope, $rootScope, StorageService) {
         $rootScope.pageTitle = 'Classes';
 
-        $scope.classes = [
-            {id: 1, name: '4ème B', students: [{firstname: 'Marcel', lastname: 'Dupuis'}]},
-            {id: 2, name: '6ème A', students: []},
-            {id: 3, name: '4ème Noisette', students: []},
-            {id: 4, name: '3ème E', students: []}
-        ];
+        $scope.classes = StorageService.getItem('classes', []);
+        $scope.$watch('classes', function () {
+            StorageService.setItem('classes', $scope.classes);
+        }, true);
 
         $scope.addClass = function () {
             $scope.classes.push({

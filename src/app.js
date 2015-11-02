@@ -9,6 +9,7 @@ angular.module('espaceClasse', [
     'espaceClasse.main',
     'espaceClasse.course',
     'espaceClasse.calendar',
+    'espaceClasse.classroom',
     'espaceClasse.classes'
 ])
 
@@ -17,7 +18,4 @@ angular.module('espaceClasse', [
             .otherwise({
                 redirectTo: '/'
             });
-    })
-    .run(function () {
-
     });
