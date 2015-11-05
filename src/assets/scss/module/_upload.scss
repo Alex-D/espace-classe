@@ -1,0 +1,34 @@
+upload {
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+    height: 30px;
+    width: 30px;
+    margin: 0 10px;
+}
+.m-upload {
+    display: block;
+    position: absolute;
+    top: -8px;
+    left: 0;
+    overflow: hidden;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background: $grey-lighter;
+
+    input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+}

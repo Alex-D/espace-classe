@@ -30,6 +30,7 @@
             <div class="student-list-scroll">
                 <ul class="no-bullet student-list">
                     <li ng-repeat="student in currentClass.students track by $index">
+                        <upload ng-model="student.photo"></upload>
                         <input class="in-place-edit" ng-model="student.firstname" placeholder="Firstname">
                         <input class="in-place-edit" ng-model="student.lastname" placeholder="Lastname">
                         <button ng-click="openDeleteStudentModal(student)" class="m-classes--delete">
