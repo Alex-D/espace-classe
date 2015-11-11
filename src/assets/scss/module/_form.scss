@@ -30,3 +30,21 @@ select.centred {
         border-color: $primary-color;
     }
 }
+
+:root .form-field {
+    margin-top: 20px;
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input,
+    select {
+        display: inline-block;
+        height: 40px;
+        padding: 10px;
+        border: 1px solid $grey-light;
+        outline: none;
+    }
+}

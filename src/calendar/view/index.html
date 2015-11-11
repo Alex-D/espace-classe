@@ -1,1 +1,49 @@
 <div ui-calendar="uiConfig.calendar" ng-model="events"></div>
+
+<div popin
+     popin-is-open="formCreateCourse"
+     popin-title="'Create course'"
+     popin-submit="createCourse"
+     popin-cancel="cancelCreateCourse"
+     popin-cancel-label="'Cancel'"
+     popin-submit-label="'OK'">
+    <p>
+        {{ formCreateCourse.date.format('dddd, MMMM Do YYYY') }}
+    </p>
+    <p class="form-field">
+        <label>Time</label>
+        <input type="number" ng-model="formCreateCourse.hours" title="Hour" min="1" max="12">
+        <select ng-model="formCreateCourse.amOrPm" title="">
+            <option value="0">am</option>
+            <option value="12">pm</option>
+        </select>
+        <input type="number" ng-model="formCreateCourse.minutes" title="Minute" min="0" max="59">
+    </p>
+    <p class="form-field">
+        <label for="classroom">Classroom</label>
+        <select ng-model="formCreateCourse.classroomId" id="classroom">
+            <option ng-repeat="classroom in classrooms track by $index" value="{{ classroom.id }}">{{ classroom.name }}</option>
+        </select>
+    </p>
+</div>
+
+<div popin
+     popin-is-open="formEditCourse"
+     popin-title="'Edit course'"
+     popin-submit="editCourse"
+     popin-cancel="cancelEditCourse"
+     popin-cancel-label="'Cancel'"
+     popin-submit-label="'OK'">
+    <p>
+        On {{ formEditCourse.date.format('dddd, MMMM Do YYYY') }}
+    </p>
+    <p class="form-field">
+        <label>Time</label>
+        <input type="number" ng-model="formEditCourse.hours" title="Hour" min="1" max="12">
+        <select ng-model="formEditCourse.amOrPm" title="">
+            <option value="0">am</option>
+            <option value="12">pm</option>
+        </select>
+        <input type="number" ng-model="formEditCourse.minutes" title="Minute" min="0" max="59">
+    </p>
+</div>
