@@ -2,9 +2,17 @@
 
 angular.module('espaceClasse.calendar')
 
-    .controller('CalendarController', function ($scope, $rootScope, StorageService) {
+    .controller('CalendarController', function ($scope, $rootScope, $location, StorageService) {
         $rootScope.pageTitle = 'Calendar';
 
+        // Get courses
+        $scope.courses = StorageService.getItem('courses', []);
+
+        $scope.$watch('courses', function () {
+            StorageService.setItem('courses', $scope.courses);
+        }, true);
+
+        // Get events
         $scope.events = StorageService.getItem('events', [[]]);
         $scope.$watch('events', function () {
             StorageService.setItem('events', $scope.events);
@@ -12,7 +20,7 @@ angular.module('espaceClasse.calendar')
 
         $scope.classrooms = StorageService.getItem('classrooms', []);
         $scope.indexedClassrooms = {};
-        for (var i = 0; i < $scope.classrooms.length; i += 1) {
+        for (let i = 0; i < $scope.classrooms.length; i += 1) {
             $scope.indexedClassrooms[$scope.classrooms[i].id] = $scope.classrooms[i];
         }
 
@@ -32,10 +40,17 @@ angular.module('espaceClasse.calendar')
             let end = new Date(start);
             end.setHours(start.getHours() + 1);
 
+            let courseId = $scope.courses.length > 0 ? $scope.courses[$scope.courses.length - 1].id + 1 : 0;
+
             $scope.events[0].push({
+                courseId,
+                classroomId: parseInt($scope.formCreateCourse.classroomId),
                 title: $scope.indexedClassrooms[$scope.formCreateCourse.classroomId].name,
                 start: +start,
                 end: +end
+            });
+            $scope.courses.push({
+                id: courseId
             });
             $scope.formCreateCourse = null;
         };
@@ -47,8 +62,8 @@ angular.module('espaceClasse.calendar')
                 minutes: 0
             };
         };
-        $scope.eventClickHandler = function (date, event, view) {
-            console.log('EVENT', date, event, view);
+        $scope.eventClickHandler = function (date) {
+            $location.path('/course/' + date.classroomId + '/' + date.courseId);
         };
         $scope.uiConfig = {
             calendar: {

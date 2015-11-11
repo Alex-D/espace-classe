@@ -6,17 +6,17 @@ angular.module('espaceClasse.classroom')
         $rootScope.pageTitle = 'Classrooms';
 
         var SEATS_DEFAULT = [];
-        for (var row = 0; row < 5; row += 1) {
+        for (let row = 0; row < 5; row += 1) {
             SEATS_DEFAULT[row] = [];
 
-            for (var seat = 0; seat < 10; seat += 1) {
+            for (let seat = 0; seat < 10; seat += 1) {
                 SEATS_DEFAULT[row][seat] = {};
             }
         }
 
         $scope.classes = StorageService.getItem('classes', []);
         $scope.indexedClasses = {};
-        for (var i = 0; i < $scope.classes.length; i += 1) {
+        for (let i = 0; i < $scope.classes.length; i += 1) {
             $scope.indexedClasses[$scope.classes[i].id] = $scope.classes[i];
         }
 
@@ -38,9 +38,9 @@ angular.module('espaceClasse.classroom')
         $scope.indexedStudents = [];
         $scope.$watch('currentClassroom', function () {
             if ($scope.currentClassroom != null) {
-                var currentClass = $scope.indexedClasses[$scope.currentClassroom.classeId];
+                let currentClass = $scope.indexedClasses[$scope.currentClassroom.classeId];
                 if (currentClass != null) {
-                    for (var i = 0; i < currentClass.students.length; i += 1) {
+                    for (let i = 0; i < currentClass.students.length; i += 1) {
                         $scope.indexedStudents[currentClass.students[i].id] = currentClass.students[i];
                     }
                 }

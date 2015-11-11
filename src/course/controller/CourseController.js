@@ -2,30 +2,72 @@
 
 angular.module('espaceClasse.course')
 
-    .controller('CourseController', function ($scope, $rootScope) {
-        $rootScope.pageTitle = 'Classroom';
-
-        // Classroom student/place list
-        $scope.classroom = [];
-        let seats = [];
-        let student = {
-            firstname: 'Jean-Michel',
-            lastname: 'Deschamps',
-            participationEditIsVisible: false,
-            warningEditIsVisible: false
-        };
-        for (let i = 0; i < 10; i += 1) {
-            let newStudent = angular.copy(student);
-            newStudent.participations = i * 2;
-            newStudent.photo = 'https://randomuser.me/api/portraits/med/' + (i % 2 === 0 ? 'men' : 'women') + '/' + i + '.jpg';
-            if (i % 4 < 2) {
-                newStudent.note = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, temporibus autem. Saepe eligendi magni, voluptate quas consectetur nesciunt! Tempore cupiditate labore, odio laudantium ea. Aspernatur expedita eaque voluptate perspiciatis commodi!';
-            }
-            newStudent.warning = Math.round(i / 2);
-            seats.push(i !== 1 && i !== 4 && i !== 7 ? newStudent : {});
+    .controller('CourseController', function ($scope, $rootScope, $location, $routeParams, StorageService) {
+        // Get courses
+        $scope.courses = StorageService.getItem('courses', []);
+        $scope.indexedCourses = {};
+        for (let i = 0; i < $scope.courses.length; i += 1) {
+            $scope.indexedCourses[$scope.courses[i].id] = $scope.courses[i];
         }
-        for (let i = 0; i < 5; i += 1) {
-            $scope.classroom.push(seats);
+
+        try {
+            // Get classroom
+            $scope.classrooms = StorageService.getItem('classrooms', []);
+            $scope.indexedClassrooms = {};
+            for (let i = 0; i < $scope.classrooms.length; i += 1) {
+                $scope.indexedClassrooms[$scope.classrooms[i].id] = $scope.classrooms[i];
+            }
+            let classroom = $scope.classrooms[$routeParams.classroomId];
+            $rootScope.pageTitle = classroom.name;
+
+            // Get class
+            $scope.classes = StorageService.getItem('classes', []);
+            $scope.indexedClasses = {};
+            for (let i = 0; i < $scope.classes.length; i += 1) {
+                $scope.indexedClasses[$scope.classes[i].id] = $scope.classes[i];
+            }
+
+            // Get stendents
+            $scope.indexedStudents = [];
+            let currentClass = $scope.indexedClasses[classroom.classeId];
+            for (let i = 0; i < currentClass.students.length; i += 1) {
+                $scope.indexedStudents[currentClass.students[i].id] = currentClass.students[i];
+            }
+
+            $scope.$watch('courses', function () {
+                StorageService.setItem('courses', $scope.courses);
+            }, true);
+
+            if ($scope.indexedCourses[$routeParams.courseId] && $scope.indexedCourses[$routeParams.courseId].seats) {
+                $scope.classroom = $scope.indexedCourses[$routeParams.courseId].seats;
+            } else {
+                // Classroom student/place list
+                $scope.course = $scope.indexedCourses[$routeParams.courseId];
+                $scope.classroom = [];
+
+                for (let row = 0; row < classroom.seats.length; row += 1) {
+                    $scope.classroom[row] = [];
+
+                    for (let seat = 0; seat < classroom.seats[row].length; seat += 1) {
+                        if (classroom.seats[row][seat].studentId) {
+                            $scope.classroom[row].push({
+                                studentId: classroom.seats[row][seat].studentId,
+                                participationEditIsVisible: false,
+                                warningEditIsVisible: false,
+                                participations: 0,
+                                warning: 0,
+                                note: ''
+                            });
+                        } else {
+                            $scope.classroom[row].push({});
+                        }
+                    }
+                }
+
+                $scope.course.seats = $scope.classroom;
+            }
+        } catch (e) {
+            $location.path('/');
         }
 
         // Show student note

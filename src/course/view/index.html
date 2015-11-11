@@ -1,10 +1,9 @@
 <div class="m-classroom">
-
     <ul>
         <li ng-repeat="row in classroom track by $index">
             <ul class="m-classroom--student-list">
                 <li ng-repeat="student in row track by $index" class="m-classroom--student">
-                    <div class="m-classroom--student-card" ng-if="student.firstname">
+                    <div class="m-classroom--student-card" ng-if="student.studentId">
                         <div class="m-classroom--student-card-participations"
                              ng-class="{'zero-participation': student.participations === 0, 'participations-edit': student.participationEditIsVisible}">
                             <button type="button" class="m-classroom--student-card-participations-button"
@@ -23,7 +22,7 @@
                                 ng-click="showNote(student)">
                             <span></span>
                         </button>
-                        <img ng-src="{{student.photo}}" alt="" class="m-classroom--student-card-face">
+                        <img ng-src="{{indexedStudents[student.studentId].photo}}" alt="" class="m-classroom--student-card-face">
                         <button type="button" class="warning-round" ng-click="toggleEditWarning(student)" ng-class="{
                                 'warning-green': student.warning === 1,
                                 'warning-yellow': student.warning === 2,
@@ -39,7 +38,7 @@
                             <button type="button" ng-click="setWarning(student, 4)" class="warning-round warning-red" ng-class="{'warning-current': student.warning === 4}"></button>
                             <button type="button" ng-click="setWarning(student, 5)" class="warning-round warning-dark" ng-class="{'warning-current': student.warning === 5}"></button>
                         </div>
-                        <span class="m-classroom--student-card-name">{{student.firstname}} {{student.lastname}}</span>
+                        <span class="m-classroom--student-card-name">{{indexedStudents[student.studentId].firstname}} {{indexedStudents[student.studentId].lastname}}</span>
                     </div>
                 </li>
             </ul>
@@ -48,7 +47,8 @@
 
     <div popin
          popin-is-open="studentNotePopin"
-         popin-title="'Note about ' + studentNotePopin.firstname + ' ' + studentNotePopin.lastname"
+         popin-title="'Note about ' + indexedStudents[studentNotePopin.studentId].firstname + ' ' + indexedStudents[studentNotePopin.studentId].lastname"
+         popin-cancel="hideNote"
          popin-submit="hideNote"
          popin-cancel-label=""
          popin-submit-label="'OK'">

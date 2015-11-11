@@ -22,8 +22,8 @@ angular.module('espaceClasse.common')
 
                         image.src = e.target.result;
 
-                        canvas.width = 150;
-                        canvas.height = 150;
+                        canvas.width = 80;
+                        canvas.height = 80;
 
                         let context = canvas.getContext('2d');
                         context.drawImage(image, 0, 0, canvas.width, canvas.height);

@@ -6,7 +6,7 @@ angular.module('espaceClasse.course', [
 
     .config(function ($routeProvider) {
         $routeProvider
-            .when('/course', {
+            .when('/course/:classroomId/:courseId', {
                 templateUrl: 'course/view/index.html',
                 controller: 'CourseController'
             });
