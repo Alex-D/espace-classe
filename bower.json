@@ -5,6 +5,7 @@
     "angular": "1.4.7",
     "angular-route": "1.4.7",
     "angular-ui-calendar": "1.0.1",
+    "fastclick": "~1.0.6",
     "normalize-css": "3.0.3"
   },
   "resolutions": {

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
+    "gulp-jshint": "^2.0.0",
     "one-gulp": "https://github.com/Alex-D/one-gulp/tarball/master"
   }
 }

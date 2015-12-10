@@ -8,7 +8,7 @@ angular.module('espaceClasse.common')
                 return localStorage.setItem(key, JSON.stringify(value));
             },
             getItem: function (key, defaultValue) {
-                let value = localStorage.getItem(key);
+                var value = localStorage.getItem(key);
                 return value != null ? JSON.parse(value) : defaultValue;
             },
             hasItem: function (key) {

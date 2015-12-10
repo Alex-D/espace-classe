@@ -26,6 +26,7 @@
   "globalstrict": true,
   "laxbreak": true,
   "globals": {
-    "angular": true
+    "angular": true,
+    "require": true
   }
 }
