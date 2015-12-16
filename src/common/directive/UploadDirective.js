@@ -20,22 +20,26 @@ angular.module('espaceClasse.common')
                         let image = new Image(),
                             canvas = document.createElement('canvas');
 
+                        image.onload = function () {
+                            canvas.width = 80;
+                            canvas.height = 80;
+
+                            let context = canvas.getContext('2d');
+                            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                            scope.ngModel = canvas.toDataURL('image/png');
+
+                            scope.$apply();
+                        };
+
                         image.src = e.target.result;
-
-                        canvas.width = 80;
-                        canvas.height = 80;
-
-                        let context = canvas.getContext('2d');
-                        context.drawImage(image, 0, 0, canvas.width, canvas.height);
-
-                        scope.ngModel = canvas.toDataURL('image/png');
-
-                        scope.$apply();
                     };
 
                     try {
                         reader.readAsDataURL(event.target.files[0]);
-                    } catch (e) {}
+                    } catch (e) {
+                        console.error(e);
+                    }
                 };
             }
         };

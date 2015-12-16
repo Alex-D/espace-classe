@@ -32,7 +32,6 @@
         border-right: 1px solid #ddd;
         border-bottom: 3px solid #ddd;
         text-indent: -9999px;
-        -webkit-appearance: none;
 
         &:focus {
             outline: none;
@@ -64,7 +63,7 @@
 
         &-has-note {
             position: absolute;
-            top: 48px;
+            top: 49px;
             right: 5px;
             height: 30px;
             width: 30px;
@@ -100,7 +99,7 @@
         &-participations {
             position: absolute;
             top: 3px;
-            right: 9px;
+            right: 5px;
             padding: 3px;
             height: 30px;
             width: 30px;
@@ -119,8 +118,10 @@
             }
             &.participations-edit {
                 overflow: hidden;
-                width: 78px;
-                height: 78px;
+                top: -3px;
+                right: -3px;
+                width: 95px;
+                height: 95px;
                 z-index: 1;
                 box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
 
@@ -133,13 +134,14 @@
                     display: block;
                     z-index: 2;
                     position: absolute;
-                    top: 2px;
-                    right: 2px;
+                    top: -1px;
+                    right: -1px;
                     height: 30px;
                     width: 30px;
                     background: $secondary-color;
                     border: none;
                     border-radius: 100%;
+                    line-height: 1;
                 }
             }
 
@@ -182,24 +184,24 @@
         }
         .warning-round {
             position: absolute;
-            top: 72px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 50px;
+            left: 5px;
         }
         .warning-edit {
             position: absolute;
-            bottom: 30px;
+            bottom: 20px;
+            left: -15px;
             background: $secondary-color;
             border-radius: $global-radius;
-            height: 47px;
-            width: 87px;
+            height: 70px;
+            width: 120px;
             box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
             animation: showWarningEdit $transition-duration;
 
             .warning-round {
                 position: relative;
                 top: 3px;
-                left: 7px;
+                left: 0;
                 margin-bottom: 2px;
             }
         }
@@ -214,10 +216,11 @@
 
 .warning-round {
     display: inline-block;
-    height: 16px;
-    width: 16px;
+    height: 30px;
+    width: 30px;
     border: 2px solid $secondary-color;
     border-radius: 100%;
+    background: #ddd;
 
     &.warning-current {
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);

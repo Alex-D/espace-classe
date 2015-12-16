@@ -43,6 +43,10 @@ one.init(gulp, {
     ]
 });
 
+
+one.unlink(one.sources.javascript).from(one.outputs.browserSync);
+one.link(one.sources.javascript).to(one.outputs.writeToDev);
+
 // Remove useless nodes
 one.unlink(one.transforms.typescript.preprocess).from(one.outputs.writeToDev);
 one.unlink(one.transforms.typescript.preprocess).from(one.transforms.javascript.sortByDepth);
@@ -80,16 +84,10 @@ one.load(ngOne);
 one.after(one.sources.javascript).insert(one.transforms.babel.preprocess);
 one.before(one.transforms.javascript.minify).insert(ngOne.ngAnnotate);
 
-// Weird fix
-one.unlink(one.transforms.javascript.sortByDepth).from(one.transforms.injectDev);
-one.link(one.transforms.javascript.minify).to(one.transforms.injectDev, true);
-one.unlink(one.transforms.babel.preprocess).from(one.outputs.browserSync);
-one.link(one.transforms.javascript.minify).to(one.outputs.browserSync);
-
 gulp.task('lint', function () {
     var jshint = require('gulp-jshint');
 
-    return gulp.src(['**/*.js', '!node_modules/**/*.js', '!bower_components/**/*', '!.one-gulp/**/*'])
+    return gulp.src(['**\/*.js', '!node_modules/**\/*.js', '!bower_components/**\/*', '!.one-gulp/**\/*'])
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('jshint-stylish'));
 });

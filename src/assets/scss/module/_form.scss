@@ -20,11 +20,12 @@ textarea.in-place-edit {
 }
 
 select.centred {
+    position: relative;
     display: block;
     margin: 0 auto 15px;
     padding: 10px;
     border: 1px solid $grey-lighter;
-    
+
     &:focus {
         outline: none;
         border-color: $primary-color;
